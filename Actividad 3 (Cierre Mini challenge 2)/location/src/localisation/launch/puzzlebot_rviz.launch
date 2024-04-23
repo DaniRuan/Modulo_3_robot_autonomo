@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+
+    <rosparam command="load" file="$(find localisation)/config/camino.yaml"/>
+
+    <arg name="puzzlebot_sim_model" default="$(find localisation)/urdf/puzzlebot_jetson_ed_urdf.urdf"/>
+    <param name="robot_description" command="cat $(arg puzzlebot_sim_model)" />
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="simulated_state_publisher" output="screen"/>
+
+    <node name="puzzlebot_sim" pkg="localisation" type="realsim_robot.py">
+    </node>
+
+    <node name="odometry_publisher" pkg="localisation" type="localisation.py">
+    </node>
+
+    <node name="Joint_State_Publisher" pkg="localisation" type="joint_state_pub.py">
+    </node>
+
+    <node name="cordinate_transform" pkg="localisation" type="transform.py">
+    </node>  
+
+    <node name="controller_path" pkg="localisation" type="controller.py">
+    </node>  
+
+    <arg name="rvizconfig" default="$(find localisation)/rviz/manipulator.rviz" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" /> 
+
+</launch>

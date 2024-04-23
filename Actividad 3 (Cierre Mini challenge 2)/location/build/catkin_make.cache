@@ -1,0 +1,2 @@
+localisation
+-DCATKIN_DEVEL_PREFIX=/home/daniel/location/devel -DCMAKE_INSTALL_PREFIX=/home/daniel/location/install -G Unix Makefiles

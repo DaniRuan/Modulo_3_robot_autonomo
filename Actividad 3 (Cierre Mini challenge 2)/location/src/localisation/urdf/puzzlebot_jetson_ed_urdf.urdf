@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<robot name="Puzzlebot Jetson-Lidar Ed.">
+
+    <!-- Dummy link to fix robot chassis -->
+    <link name="base_link">
+    </link>
+
+    <!-- Joint to connect chassis to base_link -->
+    <joint name="chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="0.0 0.0 0.05"/>
+    </joint>
+
+    <!-- Left wheel joint -->
+    <joint name="left_wheel_joint" type="continuous">
+        <parent link="chassis"/>
+        <child link="left_wheel"/>
+        <origin xyz="0.0 0.1 0.0" rpy="0 1.57079632679 1.57079632679"/> 
+        <axis xyz="0 0 1"/> 
+    </joint>
+
+    <!-- Right wheel joint -->
+    <joint name="right_wheel_joint" type="continuous">
+        <parent link="chassis"/>
+        <child link="right_wheel"/>
+        <origin xyz="0.0 -0.1 0.0" rpy="0 1.57079632679 1.57079632679" /> 
+        <axis xyz="0 0 1"/> 
+    </joint>
+
+    <!-- Chassis link -->
+    <link name="chassis">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.01" />
+            <inertia ixx="7.58333333333e-06" ixy="0.0" ixz="0.0" iyy="7.58333333333e-06" iyz="0.0" izz="1.25e-05"/>
+        </inertial>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://localisation/models/MCR2_1000_13_Chassis.stl"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="1.57079632679 0 1.57079632679" xyz="-0.05 0 0"/>
+            <geometry>
+                <mesh filename="package://localisation/models/MCR2_1000_13_Chassis.stl"/>
+            </geometry>
+            <material name= "white">
+                <color rgba="1 1 1 1"/>
+            </material>
+        </visual>
+    </link>
+
+    <!-- Left wheel -->
+    <link name="left_wheel">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.01" />
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+        </inertial>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://localisation/models/MCR2_1000_1_1_Wheel_Coupler_2.stl"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/> 
+            <geometry>
+                <mesh filename="package://localisation/models/MCR2_1000_1_1_Wheel_Coupler_2.stl"/>
+            </geometry>
+        <material name="orange">
+            <color rgba="1 0.3 0.1 1"/>
+        </material>
+        </visual>
+    </link>
+
+    <!-- Right wheel -->
+    <link name="right_wheel">
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.05" />
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+        </inertial>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://localisation/models/MCR2_1000_1_1_Wheel_Coupler_2.stl"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin rpy="0 0 0" xyz= "0 0 0"/> 
+            <geometry>
+                <mesh filename="package://localisation/models/MCR2_1000_1_1_Wheel_Coupler_2.stl"/>
+            </geometry>
+        <material name="orange">
+            <color rgba="1 0.3 0.1 1"/>
+        </material>
+        </visual>
+    </link>
+
+</robot>
